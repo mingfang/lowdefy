@@ -33,7 +33,7 @@
     "build": "yarn babel",
     "clean": "rm -rf dist && rm -rf .lowdefy",
     "prepare": "yarn build",
-    "start": "nodemon dist/server.js"
+    "start": "nodemon --watch src --exec 'yarn build && node dist/server.js'"
   },
   "dependencies": {
     "@lowdefy/graphql": "3.23.2",

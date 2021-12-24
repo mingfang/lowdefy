@@ -9,7 +9,9 @@ module.exports = merge(common, {
   devtool: 'eval-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
+    host: '0.0.0.0',
     port: 3001,
+    disableHostCheck: true,
   },
 
   plugins: [

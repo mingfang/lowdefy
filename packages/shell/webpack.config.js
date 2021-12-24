@@ -67,10 +67,9 @@ module.exports = (env) => ({
         },
       },
       remotes: {
-        lowdefy_renderer:
-          process.env.NODE_ENV === 'development'
-            ? `lowdefy_renderer@http://localhost:3001/remoteEntry.js`
-            : `lowdefy_renderer@https://blocks-cdn.lowdefy.com/v${packageJson.version}/renderer/remoteEntry.js`,
+        lowdefy_renderer: process.env.RENDERER
+          ? `lowdefy_renderer@${process.env.RENDERER}/remoteEntry.js`
+          : `lowdefy_renderer@https://blocks-cdn.lowdefy.com/v${packageJson.version}/renderer/remoteEntry.js`,
       },
     }),
     new CopyPlugin({

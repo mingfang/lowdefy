@@ -36,10 +36,15 @@
     "postversion": "yarn install",
     "prettier": "prettier --config .prettierrc --write **/*.js",
     "test": "lerna run test",
-    "test:ci": "yarn install --immutable --immutable-cache --check-cache && yarn build && yarn test --ignore='@lowdefy/format'"
+    "test:ci": "yarn install --immutable --immutable-cache --check-cache && yarn build && yarn test --ignore='@lowdefy/format'",
+    "dx:lowdefy": "nodemon --watch lowdefy.yaml --exec 'npx lowdefy build'",
+    "dx:server": "nodemon --watch packages/shell/src --watch packages/server/src --exec 'yarn workspace @lowdefy/shell build && yarn workspace @lowdefy/server build && yarn workspace @lowdefy/server-dev start'",
+    "dx:renderer": "yarn workspace @lowdefy/renderer start",
+    "dx": "RENDERER=${RENDERER:-http://localhost:3001}; LOWDEFY_SERVER_BUILD_DIRECTORY=$(pwd)/.lowdefy/build; concurrently 'yarn:dx:*'"
   },
   "devDependencies": {
     "@yarnpkg/pnpify": "2.4.0",
+    "concurrently": "^6.5.1",
     "eslint": "7.27.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-import-resolver-node": "0.3.4",
@@ -49,6 +54,7 @@
     "eslint-plugin-react": "7.24.0",
     "eslint-plugin-react-hooks": "4.2.0",
     "lerna": "4.0.0",
+    "nodemon": "^2.0.15",
     "prettier": "2.3.0"
   },
   "resolutions": {
